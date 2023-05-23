@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 import frc.robot.subsystems.Chasis;
-import frc.robot.subsystems.ChasisDriveSubsystem;
 import java.util.function.Supplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -39,8 +38,18 @@ public class Chasiscmmd extends CommandBase {
     }else{max=1;}
     if(Math.abs(velocidadap)>.15)
     {
-      velocidadL =(velocidadap+giroap)*max;
+      velocidadL =-(velocidadap+giroap)*max;
       velocidadR =(velocidadap+giroap)*max;
+      if(giroap>.20)
+      {
+        velocidadL=(velocidadap+giroap)*max;
+        velocidadR=(velocidadap+giroap)*max;
+      } 
+      if (giroap<-0.20)
+      {
+        velocidadL=(velocidadap+giroap)*max;
+        velocidadR=(velocidadap+giroap)*max;
+      }
     }else{velocidadL = 0; velocidadR = 0;}
     Chasiscontrol.SetMotors(velocidadL, velocidadR);
   }
