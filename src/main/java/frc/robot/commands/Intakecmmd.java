@@ -28,12 +28,14 @@ public class Intakecmmd extends CommandBase {
     if(Math.abs(Joystick)<=.25) {Joystick=0.0;} 
     if(Joystick>.20)
     {
-      Velocidad=Joystick*0.7;
+      Velocidad=Joystick;
     }
-    if (Joystick<-.20)
+    else
+    if (Joystick<-.10)
     {
-      Velocidad=-Joystick*0.7;
+      Velocidad=Joystick;
     }
+
     Intakeshooter.SetMotors(Velocidad);
   }
 

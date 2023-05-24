@@ -31,7 +31,7 @@ public class RobotContainer {
     //ChasisSub.setDefaultCommand(new DriveJoystickCmmd(ChasisSub, () -> JoyDrive.getRawAxis(3), () -> -JoyDrive.getRawAxis(2) ,() -> JoyDrive.getRawAxis(0),() -> JoyDrive.getAButton()));
     Chasiscontrol.setDefaultCommand(new Chasiscmmd(Chasiscontrol, () -> JoyDrive.getRawAxis(3), () -> JoyDrive.getRawAxis(0), () -> JoyDrive.getRawAxis(2), ()-> JoyDrive.getAButton()));
     //Elevator.setDefaultCommand(new Elevatorcmmd(Elevator, () -> SadDrive.getRightTriggerAxis(), ()-> SadDrive.getLeftTriggerAxis()));
-    IntakeShooter.setDefaultCommand (new Intakecmmd(IntakeShooter,() -> SadDrive.getRawAxis(0)));
+    IntakeShooter.setDefaultCommand (new Intakecmmd(IntakeShooter,() -> SadDrive.getRawAxis(1)));
     configureBindings();
     //Se declaran los subsistemas y cuando es que se usan junto con los valores que tendrán los supliers 
   }
