@@ -40,7 +40,9 @@ public class Chasiscmmd extends CommandBase {
     {
       velocidadL =-(velocidadap+giroap)*max;
       velocidadR =(velocidadap+giroap)*max;
-      if(giroap>.20)
+      
+    }else{velocidadL = 0; velocidadR = 0;}
+    if(giroap>.20)
       {
         velocidadL=(velocidadap+giroap)*max;
         velocidadR=(velocidadap+giroap)*max;
@@ -50,7 +52,6 @@ public class Chasiscmmd extends CommandBase {
         velocidadL=(velocidadap+giroap)*max;
         velocidadR=(velocidadap+giroap)*max;
       }
-    }else{velocidadL = 0; velocidadR = 0;}
     Chasiscontrol.SetMotors(velocidadL, velocidadR);
   }
   
