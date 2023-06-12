@@ -22,8 +22,7 @@ public class Visioncmmd extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Chasiscontrol);
     this.Chasiscontrol=Chasiscontrol;
-    this.ta=ta;
-    this.tx=tx;
+    
   }
 
   // Called when the command is initially scheduled.
@@ -35,19 +34,7 @@ public class Visioncmmd extends CommandBase {
   public void execute() {
     
     updateValues();
-     /*  if(Math.abs(tx)>=1)
-      {
-        velocidadL = -(tx-0)/100*2;
-        velocidadR = (tx-0)/100*2;
-      }
-      else
-      {
-        velocidadL=0;
-        velocidadR=0;
-      }
-      Chasiscontrol.SetMotors(-velocidadL, velocidadR);
-    }
-    */
+    
     if(ta!=0)
     {
       velocidadL=-(ta-3)/5;
@@ -55,8 +42,8 @@ public class Visioncmmd extends CommandBase {
       
       if(Math.abs(tx)>=1)
       {
-        velocidadL =velocidadL+((tx-0)/100*2);
-        velocidadR =velocidadR+((tx-0)/100*2);
+        velocidadL =velocidadL+((tx-0)/100*1.5);
+        velocidadR =velocidadR+((tx-0)/100*1.5);
       }
 
     }

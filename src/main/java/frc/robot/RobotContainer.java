@@ -3,18 +3,17 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import frc.robot.commands.Autonomo;
 import frc.robot.commands.Chasiscmmd;
-import frc.robot.commands.DriveJoystickCmmd;
 import frc.robot.commands.Elevatorcmmd;
-import frc.robot.commands.FowardChasisPidCmmd;
+import frc.robot.commands.Giro;
 import frc.robot.commands.Intakecmmd;
 import frc.robot.commands.Visioncmmd;
 import frc.robot.subsystems.Chasis;
-import frc.robot.subsystems.ChasisDriveSubsystem;
 import frc.robot.subsystems.ElevatorChasis;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Command; 
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 //Aqui van todas las librerias que se necesitan y se importan los subsistemas 
@@ -43,12 +42,15 @@ public class RobotContainer {
   private void configureBindings() {
     //new JoystickButton(JoyDrive, 1).whileTrue(new FowardChasisPidCmmd(ChasisSub, 100));
     new JoystickButton(SadDrive, 1).whileTrue(new Visioncmmd(Chasiscontrol));
+    new JoystickButton(SadDrive, 2).whileTrue(new Giro(Chasiscontrol));
+
   }
 
 
   public Command getAutonomousCommand() {
     //return new FowardChasisPidCmmd(ChasisSub, 100);
-    return null;
+    return new Autonomo(Chasiscontrol, 50);
+    
   
   }
 }

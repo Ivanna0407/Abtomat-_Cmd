@@ -30,8 +30,8 @@ public class ElevatorChasis extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("EncoderR", -RightEncoder.getPosition());
-    SmartDashboard.putNumber("EncoderL", LeftEncoder.getPosition());
+   // SmartDashboard.putNumber("EncoderR", -RightEncoder.getPosition());
+    //SmartDashboard.putNumber("EncoderL", LeftEncoder.getPosition());
   
   
    
