@@ -6,13 +6,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Chasis;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
+import frc.robot.NavX.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 public class Giro extends CommandBase {
   /** Creates a new Giro. */
   private final Chasis Chasiscontrol;
     //Gyro 
-    AHRS gyroscopio = new AHRS(SPI.Port.kMXP);
+    //AHRS gyroscopio = new AHRS(SPI.Port.kMXP);
+   private double Yaw;
+   
 
   public Giro(Chasis Chasiscontrol) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -29,20 +32,19 @@ public class Giro extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Yaw=Chasiscontrol.getYaw();
     double velocidadL, velocidadR;
-    
-    /*if (gyroscopio.getYaw()<=90)
+    if (Yaw>90)
     {
-      //velocidadL=90-gyroscopio.getYaw();
-      //velocidadR=90-gyroscopio.getYaw();
-      velocidadL=.5;
-      velocidadR=.5;
+      velocidadL=.4;
+      velocidadR=-.4;
     }
     else{
       velocidadL=0;
       velocidadR=0;
     }
-    Chasiscontrol.SetMotors(-velocidadL, -velocidadR);*/
+    Chasiscontrol.SetMotors(velocidadL, velocidadR);
+    
   
   }
 
