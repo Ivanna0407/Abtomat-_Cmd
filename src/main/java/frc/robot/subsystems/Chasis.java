@@ -52,6 +52,7 @@ public class Chasis extends SubsystemBase {
     SmartDashboard.putNumber("Velocidad Motor Izquierdo", MotorLeftM.get());
     //SmartDashboard.putNumber("Yaw",gyroscopio.getYaw() );
     SmartDashboard.putNumber("Giro",ahrs.getYaw() );
+    SmartDashboard.putNumber("Pitch", ahrs.getPitch());
   }
   public void SetMotors(double LeftSpeed, double RightSpeed){
     MotorLeftM.set(LeftSpeed*.7); MotorRightM.set(RightSpeed*.7);
@@ -60,7 +61,7 @@ public class Chasis extends SubsystemBase {
   public double getRightEncoder(){ return -EncoderR.getPosition();}
   public double getLeftEncoder(){ return EncoderL.getPosition();}
     public double getYaw(){return ahrs.getYaw();}
-
+   public double getPitch(){return ahrs.getPitch();}
   
   public void resetEncode(){
     EncoderR.setPosition(0); EncoderL.setPosition(0);

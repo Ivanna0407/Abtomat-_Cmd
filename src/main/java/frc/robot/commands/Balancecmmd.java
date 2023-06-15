@@ -3,28 +3,29 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Chasis;
 import edu.wpi.first.wpilibj.Timer;
-
-public class Autonomo extends CommandBase {
- private final Chasis Chasiscontrol;
- private final int Setpoint;
- private double kp=0.02,ki=0.02;
- private double EncoderR=0,EncoderL=0;
- private double errorPR,errorPL,errorIL,errorIR,ultimotiempo ;
- private double ZonaIntegral;
- private double kd=0.002;
- private double yaw;
- private double errorDL,errorDR;
- private double LastErrorR = 0, LastErrorL = 0;
-
-
-  public Autonomo(Chasis Chasiscontrol, int Setpoint) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Chasiscontrol);
-    this.Chasiscontrol=Chasiscontrol;
+public class Balancecmmd extends CommandBase {
+  private final Chasis chasiscontrol;
+  private final int Setpoint;
+  private double kp=0.02,ki=0.02;
+  private double EncoderR=0,EncoderL=0;
+  private double errorPR,errorPL,errorIL,errorIR,ultimotiempo ;
+  private double ZonaIntegral;
+  private double kd=0.002;
+  private double pitch;
+  private double errorDL,errorDR;
+  private double LastErrorR = 0, LastErrorL = 0;
+  private double estado=0;
+  private double velocidadL,velocidadR;
+  /** Creates a new Balancecmmd. */
+  public Balancecmmd(Chasis chasiscontrol, int Setpoint) {
+    addRequirements(chasiscontrol);
+    this.chasiscontrol=chasiscontrol;
     this.Setpoint=Setpoint;
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -32,18 +33,18 @@ public class Autonomo extends CommandBase {
   public void initialize() {
     EncoderL=0;
     EncoderR=0;
-    Chasiscontrol.resetEncode();
-    ZonaIntegral= Math.abs((Setpoint-Chasiscontrol.getLeftEncoder())*.1);
-    yaw=Chasiscontrol.getYaw();
+    chasiscontrol.resetEncode();
+    ZonaIntegral= Math.abs((Setpoint-chasiscontrol.getLeftEncoder())*.1);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double velocidadL,velocidadR;
     
-    EncoderL=Chasiscontrol.getLeftEncoder();
-    EncoderR=Chasiscontrol.getRightEncoder();
+     /* 
+    EncoderL=chasiscontrol.getLeftEncoder();
+    EncoderR=chasiscontrol.getRightEncoder();
     errorPL=Setpoint-EncoderL;
     errorPR=Setpoint-EncoderR;
     //I
@@ -63,22 +64,26 @@ public class Autonomo extends CommandBase {
       velocidadL=kp*errorPL+ki*errorIL+kd*errorDL;
       velocidadR=kp*errorPR+ki*errorIR+kd*errorDR;
    
-    Chasiscontrol.SetMotors(velocidadL, -velocidadR);
+    chasiscontrol.SetMotors(velocidadL, -velocidadR);
     ultimotiempo=Timer.getFPGATimestamp();
     LastErrorL=errorPL;
     LastErrorR=errorPR;
-    if(yaw<90)
-    {
-      Chasiscontrol.SetMotors(velocidadR, velocidadL);
-    }
+    estado=1;
+    */
+    
+    
+    pitch=chasiscontrol.getPitch();
+      chasiscontrol.SetMotors(pitch/-20, pitch/20);
+     
+     
+     
+    
+     
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    Chasiscontrol.SetMotors(0, 0);
-
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

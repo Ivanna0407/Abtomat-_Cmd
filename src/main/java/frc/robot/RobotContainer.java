@@ -4,6 +4,7 @@
 
 package frc.robot;
 import frc.robot.commands.Autonomo;
+import frc.robot.commands.Balancecmmd;
 import frc.robot.commands.Chasiscmmd;
 import frc.robot.commands.Elevatorcmmd;
 import frc.robot.commands.Giro;
@@ -49,8 +50,9 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     //return new FowardChasisPidCmmd(ChasisSub, 100);
-    return new Autonomo(Chasiscontrol, 50);
+    //return new Autonomo(Chasiscontrol, 20);
+    return new Balancecmmd(Chasiscontrol, 30);
+    //Se cambia el setpoint a 120 ya que sea la prueba en cancha 
     
-  
   }
 }

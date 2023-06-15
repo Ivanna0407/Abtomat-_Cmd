@@ -15,7 +15,7 @@ public class Giro extends CommandBase {
     //Gyro 
     //AHRS gyroscopio = new AHRS(SPI.Port.kMXP);
    private double Yaw;
-   
+  
 
   public Giro(Chasis Chasiscontrol) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -26,7 +26,8 @@ public class Giro extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   
+    Yaw=Chasiscontrol.getYaw();
+  
   }
 
   // Called every time the scheduler runs while the command is scheduled.
